@@ -1,14 +1,13 @@
-import {
-  PageContainer,
-  PageTitle,
-  PageSubTitle,
-} from "./class-style/styled/styled-externo.js";
+import { View, Text } from "react-native";
+import { styles } from "./class-style/style-style-sheet/style-externo";
 
 export default function App() {
+
   return (
-    <PageContainer>
-      <PageTitle>IDMO</PageTitle>
-      <PageSubTitle>Hello World!</PageSubTitle>
-    </PageContainer>
+    <View style={styles.container}>
+      <Text style={styles.title}>INDMO</Text>
+
+      <Text style={styles.text}>HELLO WOLRD!</Text>
+    </View>
   );
 }

@@ -1,4 +1,4 @@
-import {StyleSheet } from "react-native";
+import {Platform, StyleSheet } from "react-native";
 
 
 export const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "blue",
+      backgroundColor: Platform.OS === 'ios' ? "blue" : "red",
     },
     title: {
       fontSize: 50,
