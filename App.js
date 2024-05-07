@@ -2,7 +2,7 @@ import {
   PageContainer,
   PageTitle,
   PageSubTitle,
-} from "./class-style/styled-externo.js";
+} from "./class-style/styled/styled-externo.js";
 
 export default function App() {
   return (
