@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
     text: {
       paddingTop: 20,
       fontSize: 30,
-      color: "yellow",
-      fontFamily: 'Jacquard12Charted-Regular'
+      color: "yellow"
     },
   });

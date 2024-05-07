@@ -1,12 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
-import { useFonts } from "expo-font";
 
 
 export default function App() {
-
-  const [fontsLoaded] = useFonts({
-    'Jacquard12Charted-Regular': require('./assets/fonts/Jacquard12Charted-Regular.ttf'),
-  });
 
   return (
     <View style={styles.container}>
@@ -30,12 +25,10 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontWeight: "bold",
     color: "white",
-    fontFamily: 'Jacquard12Charted-Regular'
   },
   text: {
     paddingTop: 20,
     fontSize: 30,
     color: "yellow",
-    fontFamily: 'Jacquard12Charted-Regular'
   },
 });
