@@ -29,7 +29,7 @@
     "plugins": [
       [
       "expo-font", {
-        "fonts": ["./assets/fonts/Jacquard12Charted-Regular.ttf"]
+        "fonts": ["./type-weather/assets/fonts/Nunito-Regular.ttf", "./type-weather/assets/fonts/Nunito-ExtraBold.ttf", "./type-weather/assets/fonts/Nunito-Bold.ttf", "node_modules/@expo-google-fonts/nunito/Nunito_400Regular.ttf"]
       }
       ]
     ]

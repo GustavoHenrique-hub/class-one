@@ -1,6 +1,6 @@
 import React from "react";
-import Search from "./src/type-weather/pages/search";
+import Dashboard from "./src/type-weather/pages/dashboard";
 
 export default function App() {
-  return <Search />;
+  return <Dashboard />;
 }
