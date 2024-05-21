@@ -19,10 +19,12 @@ export default function Search() {
     <Container source={Background} resizeMode="cover">
       <HeaderContainer>
         <HeaderImg source={Cloud}></HeaderImg>
-        <HeaderTitle>TypeWeather</HeaderTitle>
+        <HeaderTitle style={{ fontFamily: "Nunito-Bold" }}>
+          TypeWeather
+        </HeaderTitle>
       </HeaderContainer>
       <InputContainer>
-        <InputTitle>
+        <InputTitle style={{ fontFamily: "Nunito-Regular" }}>
           Boas vindas ao<InputTitleCollored> TypeWeather</InputTitleCollored>
         </InputTitle>
         <InputTitleText>
@@ -31,6 +33,7 @@ export default function Search() {
         <InputSearch
           placeholder="Buscar local"
           placeholderTextColor="#7F7F98"
+          style={{ fontFamily: "Nunito-Regular" }}
         ></InputSearch>
       </InputContainer>
     </Container>

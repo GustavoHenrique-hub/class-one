@@ -12,28 +12,19 @@ import {
   TopContainerFooterIn,
   TopContainerFooterImage,
   TopContainerFooterTitle,
+  TopContainerFooterInLeft,
+  TopContainerFooterInRight,
+  TopContainerFooterInText,
+  TopContainerFooterInTitle,
+  TopContainerFooterSubtitle,
 } from "./styles";
-
-import { useCallback } from "react";
 
 import Cloud from "./images/home.png";
 import Background from "../../assets/images/background.png";
 import TopContainerBackground from "./images/background-dashboard.png";
 import Icon from "./images/icons.png";
 
-import { useFonts } from "expo-font";
-
 export default function Dashboard() {
-  let [fontsLoaded] = useFonts({
-    "Nunito-Bold": require("../../assets/fonts/Nunito-Bold.ttf"),
-    "Nunito-ExtraBold": require("../../assets/fonts/Nunito-ExtraBold.ttf"),
-    "Nunito-Regular": require("../../assets/fonts/Nunito-Regular.ttf"),
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
     //All Content
     <Container source={Background}>
@@ -53,22 +44,25 @@ export default function Dashboard() {
         <TopContainerBackgroundImage source={TopContainerBackground}>
           {/* Header da Imagem do Container do Topo*/}
           <TopContainerHeaderIn>
-            <TopContainerTitle style={{ fontFamily: "Nunito-Bold" }}>
-              Porto Alegre, RS
-            </TopContainerTitle>
-            <TopContainerHourText style={{ fontFamily: "Nunito-Regular" }}>
-              21:39
-            </TopContainerHourText>
+            <TopContainerTitle>Porto Alegre, RS</TopContainerTitle>
+            <TopContainerHourText>21:39</TopContainerHourText>
           </TopContainerHeaderIn>
           <TopContainerSubtitle>
             Segunda-feira, 15 de maio de 2023
           </TopContainerSubtitle>
 
           <TopContainerFooterIn>
-            <TopContainerFooterTitle style={{ fontFamily: "Nunito-ExtraBold" }}>
-              28°c
-            </TopContainerFooterTitle>
-            <TopContainerFooterImage source={Icon} />
+            <TopContainerFooterInLeft>
+              <TopContainerFooterTitle>28°c</TopContainerFooterTitle>
+              <TopContainerFooterSubtitle>
+                26ºc / 32ºc
+              </TopContainerFooterSubtitle>
+              <TopContainerFooterInText>Poucas nuvens</TopContainerFooterInText>
+            </TopContainerFooterInLeft>
+
+            <TopContainerFooterInRight>
+              <TopContainerFooterImage source={Icon} />
+            </TopContainerFooterInRight>
           </TopContainerFooterIn>
         </TopContainerBackgroundImage>
       </TopContainer>

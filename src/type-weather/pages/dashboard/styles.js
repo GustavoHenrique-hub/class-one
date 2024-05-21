@@ -41,6 +41,8 @@ const TopContainerInput = styled.TextInput`
   background-color: #1e1e29;
   padding: 17px 20px;
   margin-top: auto;
+  font-size: 16px;
+  font-family: "Nunito-Regular";
 `;
 
 const TopContainerBackgroundImage = styled.ImageBackground`
@@ -60,8 +62,8 @@ const TopContainerHeaderIn = styled.View`
 
 const TopContainerTitle = styled.Text`
   color: #fafafa;
-  font-weight: bold;
   font-size: 16px;
+  font-family: "Nunito-Bold";
 `;
 
 const TopContainerSubtitle = styled.Text`
@@ -69,12 +71,13 @@ const TopContainerSubtitle = styled.Text`
   font-size: 12px;
   padding: 15px;
   margin-top: -20px;
+  font-family: "Nunito-Regular";
 `;
 
 const TopContainerHourText = styled.Text`
   color: #fafafa;
   font-size: 12px;
-  font-weight: bold;
+  font-family: "Nunito-Bold";
 `;
 
 const TopContainerFooterIn = styled.View`
@@ -85,10 +88,32 @@ const TopContainerFooterIn = styled.View`
   flex-direction: row;
 `;
 
+const TopContainerFooterInLeft = styled.View`
+  display: flex;
+  flex-direction: column;
+`;
+
 const TopContainerFooterTitle = styled.Text`
   color: #fafafa;
   font-size: 48px;
-  font-weight: bold;
+  font-family: "Nunito-ExtraBold";
+`;
+
+const TopContainerFooterSubtitle = styled.Text`
+  color: #fafafa;
+  font-size: 16px;
+  font-family: "Nunito-Bold";
+`;
+
+const TopContainerFooterInText = styled.Text`
+  color: #fafafa;
+  font-size: 12px;
+  font-family: "Nunito-Regular";
+`;
+
+const TopContainerFooterInRight = styled.View`
+  display: flex;
+  flex-direction: column;
 `;
 
 const TopContainerFooterImage = styled.Image`
@@ -110,4 +135,8 @@ export {
   TopContainerFooterIn,
   TopContainerFooterImage,
   TopContainerFooterTitle,
+  TopContainerFooterInLeft,
+  TopContainerFooterInRight,
+  TopContainerFooterInText,
+  TopContainerFooterSubtitle,
 };

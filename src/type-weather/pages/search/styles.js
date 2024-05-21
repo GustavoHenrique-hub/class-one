@@ -24,8 +24,7 @@ export const HeaderImg = styled.Image`
 
 export const HeaderTitle = styled.Text`
   font-size: 20px;
-  color: #FAFAFA;
-  font-weight: bold;
+  color: #fafafa;
 `;
 
 export const InputContainer = styled.View`
@@ -38,27 +37,26 @@ export const InputContainer = styled.View`
 
 export const InputTitle = styled.Text`
   font-size: 20px;
-  color: #FAFAFA;
+  color: #fafafa;
 `;
 
 export const InputTitleCollored = styled.Text`
   font-size: 20px;
-  color: #8FB2F5;
+  color: #8fb2f5;
   font-weight: bold;
 `;
 
 export const InputTitleText = styled.Text`
-    color: #BFBFD4;
+  color: #bfbfd4;
 `;
 
 export const InputSearch = styled.TextInput`
   width: 311px;
   height: 56px;
-  color: #7F7F98;
+  color: #7f7f98;
   border-radius: 8px;
-  background-color: #1E1E29;
+  background-color: #1e1e29;
   padding: 17px 20px;
   margin-top: 40px;
+  font-size: 16px;
 `;
-
-
