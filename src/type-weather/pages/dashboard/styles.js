@@ -143,7 +143,7 @@ const MiddleContainerCard = styled.View`
 `;
 
 const MiddleContainerCardLine = styled.View`
-  border: 0.4px solid #3B3B54;
+  border: 0.4px solid #3b3b54;
   width: 90%;
   opacity: 0.5;
   margin-top: -15px;
@@ -189,6 +189,54 @@ const MiddleContainerText = styled.Text`
   padding: 0px 0px 0px 12px;
 `;
 
+const BottomContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 14px;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 20px;
+  background-color: #16161f;
+  border-radius: 12px;
+  padding: 12.4px;
+`;
+
+const BottomContainerCard = styled.View`
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  gap: 10px;
+  padding: 15px;
+`;
+
+const BottomContainerCardTitle = styled.Text`
+  color: #fafafa;
+  font-size: 14px;
+  font-family: "Nunito-Bold";
+`; 
+
+const BottomContainerCardImage = styled.Image`
+  margin-left: -5px;
+  width: 36.9px;
+  height: 39px;
+`;
+
+const BottomContainerTextMax = styled.Text`
+  color: #fafafa;
+  font-size: 14px;
+  font-family: "Nunito-Bold";
+  margin-top: 12px;
+`;
+
+const BottomContainerTextMin = styled.Text`
+  color: #7F7F98;
+  font-size: 14px;
+  font-family: "Nunito-Bold";
+  margin-top: -13px;
+`;
+
+
 const ScrollScreen = styled.ScrollView``;
 
 export {
@@ -221,5 +269,12 @@ export {
   MiddleContainerUmitImageSize,
   MiddleContainerWindImageSize,
   MiddleContainerSunImageSize,
-  MiddleContainerCardLine
+  MiddleContainerCardLine,
+
+  BottomContainer,
+  BottomContainerCard,
+  BottomContainerCardTitle, 
+  BottomContainerCardImage,
+  BottomContainerTextMax,
+  BottomContainerTextMin
 };

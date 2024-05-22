@@ -28,7 +28,14 @@ import {
   MiddleContainerUmitImageSize,
   MiddleContainerWindImageSize,
   MiddleContainerSunImageSize,
-  MiddleContainerCardLine
+  MiddleContainerCardLine,
+
+  BottomContainer,
+  BottomContainerCard,
+  BottomContainerCardTitle,
+  BottomContainerCardImage,
+  BottomContainerTextMax,
+  BottomContainerTextMin
 } from "./styles";
 
 import Background from "../../assets/images/background.png";
@@ -41,6 +48,10 @@ import RainyCloud from "./images/rainy-cloud.png";
 import Wind from "./images/wind.png";
 import Umit from "./images/umit.png";
 import Sun from "./images/sun.png";
+
+import StormyCloudIcon from "./images/stormy-cloud-icon.png"
+import SunnyIcon from "./images/sunny-icon.png"
+
 
 export default function Dashboard() {
   return (
@@ -149,8 +160,53 @@ export default function Dashboard() {
           </MiddleContainerImage>
         </MiddleContainerCard>
       </MiddleContainer>
+
+      <BottomContainer>
+
+        <BottomContainerCard>
+          <BottomContainerCardTitle>Ter</BottomContainerCardTitle>
+          <BottomContainerCardImage source={StormyCloudIcon}/>
+          <BottomContainerTextMax>32ºc</BottomContainerTextMax>
+          <BottomContainerTextMin>26ºc</BottomContainerTextMin>
+        </BottomContainerCard>
+
+        <BottomContainerCard>
+          <BottomContainerCardTitle>Qua</BottomContainerCardTitle>
+          <BottomContainerCardImage source={SunnyIcon}/>
+          <BottomContainerTextMax>32ºc</BottomContainerTextMax>
+          <BottomContainerTextMin>26ºc</BottomContainerTextMin>
+        </BottomContainerCard>
+
+        <BottomContainerCard>
+          <BottomContainerCardTitle>Qui</BottomContainerCardTitle>
+          <BottomContainerCardImage source={StormyCloudIcon}/>
+          <BottomContainerTextMax>32ºc</BottomContainerTextMax>
+          <BottomContainerTextMin>26ºc</BottomContainerTextMin>
+        </BottomContainerCard>
+
+        <BottomContainerCard>
+          <BottomContainerCardTitle>Sex</BottomContainerCardTitle>
+          <BottomContainerCardImage source={SunnyIcon}/>
+          <BottomContainerTextMax>32ºc</BottomContainerTextMax>
+          <BottomContainerTextMin>26ºc</BottomContainerTextMin>
+        </BottomContainerCard>
+
+        <BottomContainerCard>
+          <BottomContainerCardTitle>Sab</BottomContainerCardTitle>
+          <BottomContainerCardImage source={StormyCloudIcon}/>
+          <BottomContainerTextMax>32ºc</BottomContainerTextMax>
+          <BottomContainerTextMin>26ºc</BottomContainerTextMin>
+        </BottomContainerCard>
+
+      </BottomContainer>
+
       </ScrollScreen>
     </Container>
    
+
+   
   );
-}
+
+ 
+}  
+
