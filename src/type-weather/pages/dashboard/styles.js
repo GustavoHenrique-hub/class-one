@@ -205,6 +205,7 @@ const BottomContainer = styled.View`
 const BottomContainerCard = styled.View`
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: auto;
   gap: 10px;
   padding: 15px;
