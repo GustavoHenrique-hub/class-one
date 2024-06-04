@@ -48,7 +48,7 @@ import Sun from "./images/sun.png";
 
 import StormyCloudIcon from "./images/stormy-cloud-icon.png";
 import SunnyIcon from "./images/sunny-icon.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const key = "b2213bc688da17e335540298fee4f0b7";
@@ -70,6 +70,15 @@ const months = [
   "Dezembro",
 ];
 
+const days = [
+  "Domingo",
+  "Segunda",
+  "Terça",
+  "Quarta",
+  "Quinta",
+  "Sexta",
+  "Sábado",
+];
 export default function Dashboard() {
   const [stateTemperatura, setStateTemperatura] = useState("");
   const [stateCity, setStateCity] = useState("");
@@ -84,55 +93,74 @@ export default function Dashboard() {
   const [stateWindKm, setStateWindKm] = useState();
   const [stateHumidity, setStateHumidity] = useState();
   const [stateUvIndex, setStateUvIndex] = useState();
+  const [forecastArray, setForecastArray] = useState([]);
 
   const daysToShow = 5;
 
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  //const []
 
   const getClima = () => {
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${stateCity}&lang=pt_br&appid=${key}&units=metric&`;
     const weatherDetailsUrl = `http://api.weatherapi.com/v1/forecast.json?key=${detailKey}&q=${stateCity}`;
     const geoDetailUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${stateCity}&lang=pt_br&appid=${key}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${stateCity}&appid=${key}&units=metric`;
 
-    axios.get(weatherUrl).then((weatherData) => {
-      setStateTemperatura(weatherData.data.main.temp);
-      setStateTempMax(weatherData.data.main.temp_max);
-      setStateTempMin(weatherData.data.main.temp_min);
-      setStateWeather(weatherData.data.weather[0].main);
-    });
+    axios
+      .get(weatherUrl)
+      .then((weatherData) => {
+        setStateTemperatura(weatherData.data.main.temp);
+        setStateTempMax(weatherData.data.main.temp_max);
+        setStateTempMin(weatherData.data.main.temp_min);
+        setStateWeather(weatherData.data.weather[0].main);
+      })
+      .catch((error) => console.error("Error fetching weather data:", error));
 
-    axios.get(weatherDetailsUrl).then((detailInfo) => {
-      setStateFeelsLike(detailInfo.data.current.feelslike_c);
-      setStateChanceOfRain(
-        detailInfo.data.forecast.forecastday[0].day.daily_chance_of_rain
+    axios
+      .get(weatherDetailsUrl)
+      .then((detailInfo) => {
+        setStateFeelsLike(detailInfo.data.current.feelslike_c);
+        setStateChanceOfRain(
+          detailInfo.data.forecast.forecastday[0].day.daily_chance_of_rain
+        );
+        setStateHumidity(detailInfo.data.current.humidity);
+        setStateUvIndex(detailInfo.data.current.uv);
+        setStateWindKm(detailInfo.data.current.wind_kph);
+      })
+      .catch((error) => console.error("Error fetching geocode data:", error));
+
+    axios
+      .get(geoDetailUrl)
+      .then((geoDetailInfo) => {
+        setCountry(geoDetailInfo.data[0].country);
+        setCity(geoDetailInfo.data[0].name);
+      })
+      .catch((error) =>
+        console.error("Error fetching weather details:", error)
       );
-      setStateHumidity(detailInfo.data.current.humidity);
-      setStateUvIndex(detailInfo.data.current.uv);
-      setStateWindKm(detailInfo.data.current.wind_kph);
-    });
 
-    axios.get(geoDetailUrl).then((geoDetailInfo) => {
-      console.log(geoDetailInfo.data[0].name);
-      setCountry(geoDetailInfo.data[0].country);
-      setCity(geoDetailInfo.data[0].name);
-    });
+    axios
+      .get(forecastUrl)
+      .then((forecastData) => {
+        const tempArray = [];
+        for (let i = 7; i < 40; i += 8) {
+          console.log(forecastData.data.list[i].weather[0].main);
+          console.log(`https://openweathermap.org/img/wn/${forecastData.data.list[i].weather[0].icon}.png`)
+          tempArray.push({
+            main: forecastData.data.list[i].weather[0].main,
+            icon: `https://openweathermap.org/img/wn/${forecastData.data.list[i].weather[0].icon}.png`,
+            temp_max: forecastData.data.list[i].main.temp_max,
+            temp_min: forecastData.data.list[i].main.temp_min,
+          });
+        }
+        setForecastArray(tempArray);
+      })
+      .catch((error) => console.error("Error fetching forecast data:", error));
 
     setStateCity("");
   };
 
   let now = new Date();
-
-  const days = [
-    "Domingo",
-    "Segunda",
-    "Terça",
-    "Quarta",
-    "Quinta",
-    "Sexta",
-    "Sábado",
-  ];
 
   let daysWeek = days[now.getDay()];
   let dayOfMonth = now.getDate();
@@ -141,7 +169,7 @@ export default function Dashboard() {
   let currentDate = `${daysWeek}, ${dayOfMonth} de ${monthOfYear} ${year}`;
 
   const getWeatherForNextDays = (daysToShow) => {
-    const todayIndex = now.getUTCDay() + 1;
+    const todayIndex = now.getUTCDay();
     let nextDays = [];
     for (let i = 0; i < daysToShow; i++) {
       nextDays.push(arrayOfdays[(todayIndex + i) % 7]);
@@ -167,9 +195,10 @@ export default function Dashboard() {
     return setStateTime(`${hour}:${minute}`);
   };
 
-  setInterval(() => {
-    getTime();
-  }, 1000);
+  useEffect(() => {
+    const interval = setInterval(getTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     //All Content
@@ -192,16 +221,15 @@ export default function Dashboard() {
                 setCity("");
                 setCountry("");
                 setStateTemperatura("");
-                setStateTempMax("")
-                setStateTempMin("")
-                setStateWeather("")
+                setStateTempMax("");
+                setStateTempMin("");
+                setStateWeather("");
 
                 setStateFeelsLike("");
                 setStateChanceOfRain("");
                 setStateWindKm("");
                 setStateHumidity("");
                 setStateUvIndex("");
-
               }}
             />
           </TopContainerHeader>
@@ -284,7 +312,7 @@ export default function Dashboard() {
             </MiddleContainerImage>
             <MiddleContainerImage>
               <MiddleContainerText>
-                {!Number.isNaN(stateWindKm) ? `${stateWindKm} km` : " - "}
+                {stateWindKm !== undefined ? `${stateWindKm} km` : " - "}
               </MiddleContainerText>
             </MiddleContainerImage>
           </MiddleContainerCard>
@@ -298,7 +326,7 @@ export default function Dashboard() {
             </MiddleContainerImage>
             <MiddleContainerImage>
               <MiddleContainerText>
-                {!Number.isNaN(stateHumidity) ? `${stateHumidity}%` : " - " }
+                {stateHumidity !== undefined ? `${stateHumidity}%` : " - "}
               </MiddleContainerText>
             </MiddleContainerImage>
           </MiddleContainerCard>
@@ -312,7 +340,7 @@ export default function Dashboard() {
             </MiddleContainerImage>
             <MiddleContainerImage>
               <MiddleContainerText>
-                {!Number.isNaN(stateUvIndex) ? `${stateUvIndex}` : " - "}
+                {stateUvIndex !== undefined ? `${stateUvIndex}` : " - "}
               </MiddleContainerText>
             </MiddleContainerImage>
           </MiddleContainerCard>
@@ -321,20 +349,32 @@ export default function Dashboard() {
         <BottomContainer>
           {displayedWeather.map((dias, index) => {
             return (
-              <BottomContainerCard>
-                <BottomContainerCardTitle key={index}>
-                  {dias}
-                </BottomContainerCardTitle>
-                <BottomContainerCardImage source={StormyCloudIcon} />
+              <BottomContainerCard key={index}>
+                <BottomContainerCardTitle>{dias}</BottomContainerCardTitle>
+                {forecastArray[index] ? (
+                  <BottomContainerCardImage
+                    src={forecastArray[index].icon}
+                    alt="Weather Icon"
+                  />
+                ) : (
+                  <BottomContainerCardImage
+                    src={'https://placehold.co/56x56'}
+                    style={{opacity: 0.7}}
+                    alt="Weather Icon"
+                  />
+                )}
+
                 <BottomContainerTextMax>
-                  {!Number.isNaN(parseInt(stateTempMax))
-                    ? `${parseInt(stateTempMax)}°c`
+                  {forecastArray[index] &&
+                  forecastArray[index].temp_max !== undefined
+                    ? `${parseInt(forecastArray[index].temp_max)}°c`
                     : " - "}
                 </BottomContainerTextMax>
                 <BottomContainerTextMin>
-                  {!Number.isNaN(parseInt(stateTempMin))
-                    ? `${parseInt(stateTempMin)}°c`
-                    : " - "}
+                  {forecastArray[index] &&
+                    forecastArray[index].temp_min !== undefined
+                      ? ` ${parseInt(forecastArray[index].temp_min)}°c`
+                      : " - "}
                 </BottomContainerTextMin>
               </BottomContainerCard>
             );

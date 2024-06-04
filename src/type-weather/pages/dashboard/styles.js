@@ -207,8 +207,9 @@ const BottomContainerCard = styled.View`
   flex-direction: column;
   align-items: center;
   height: auto;
-  gap: 10px;
-  padding: 15px;
+  gap: 15px;
+  margin-top: 12px;
+  margin-left: 20px;
 `;
 
 const BottomContainerCardTitle = styled.Text`
